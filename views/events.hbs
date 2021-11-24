@@ -42,41 +42,15 @@
               <i class="material-icons">filter_list</i>
             </th>
             <th>Interest<i class="material-icons">sort</i></th>
+            <!-- ADMIN ONLY BUTTONS -->
+          <th>Admin Op</th>
           </tr>
 
-          <!-- ADMIN ONLY BUTTONS -->
-          <th>Admin Op</th>
+
         </thead>
 
         <tbody>
-          <tr>
-
-            <!-- USER ONLY - Initialize page with appropriate state of button -->
-            <td>
-              <a onclick='toggleInterest(this, "{{ event_id }}")'
-                class="btn-floating btn-small waves-effect waves-light scale-transition scale-in blue"><i
-                  class="material-icons">star_border</i></a>
-              <!-- If user already "starred" this event, it should be a yellow star -->
-              <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
-            </td>
-            <td class="blue-text clickable" onclick="location.href='/events/1.html'">Opening Ceremony</td>
-            <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
-            <td><a href='?filter=date:05-01-2022'>May 1 (Sat)</a> 10:30 AM</td>
-            <td>30m</td>
-            <td> <a href='?filter=type:Main'>Main</a></td>
-            <td>100<i class=material-icons>people</i></td>
-            <!-- ADMIN ONLY BUTTONS -->
-            <td nowrap>
-
-              <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/eventform.html"><i
-                  class="material-icons">edit</i></a>
-              <a class="btn-floating waves-effect waves-light red"
-                onclick='confirmDelete("Opening Ceremony","{{ event_id}}", ".")'><i
-                  class="material-icons">delete</i></a>
-
-            </td>
-          </tr>
-
+          {{#each events}}
           <tr>
 
             <!-- USER ONLY - Initialize page with appropriate state of button -->
@@ -88,28 +62,28 @@
               <!-- If user already "starred" this event, it should be a yellow star -->
               <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
             </td>
-            <td class="blue-text clickable" onclick="location.href='/events/2.html'">Closing Awards Ceremony</td>
-            <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
-            <td><a href='?filter=date:05-02-2021'>May 2 (Sun)</a> 11:00 AM</td>
-            <td>30m</td>
-            <td> <a href='?filter=type:Main'>Main</a></td>
-            <td>99<i class=material-icons>people</i></td>
+            <td class="blue-text clickable" onclick="location.href='/events/{{event_id}}'">{{event_name}}</td>
+            <td> <a href='?filter=location:{{event_location}}'>{{event_location}} </a></td>
+            <td><a href='?filter=date:05-02-2021'>{{event_date}}</a> {{event_time}}</td>
+            <td>{{event_duration}}</td>
+            <td> <a href='?filter=type:Main'>{{event_type}}</a></td>
+            <td>{{event_interest}}<i class=material-icons>people</i></td>
             <!-- ADMIN ONLY BUTTONS -->
             <td nowrap>
 
-              <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="./eventform.html"><i
+              <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/events/modify/{{event_id}}"><i
                   class="material-icons">edit</i></a>
               <a class="btn-floating waves-effect waves-light red"
                 onclick='confirmDelete("Opening Ceremony","{{ event_id}}")'><i class="material-icons">delete</i></a>
 
             </td>
           </tr>
-
+          {{/each}}
         </tbody>
       </table>
     </div>
 
-    <a href="/eventform.html" class="btn-floating btn-large orange fixed-action-btn">
+    <a href="/events/create" class="btn-floating btn-large orange fixed-action-btn">
       <i class="large material-icons">create</i>
     </a>
 
