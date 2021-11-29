@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const events_data = require('../data/dummy_events')
+const events_data = require('../data/dummy_events_v2')
 
 /* GET events page. */
 router.get('/', function(req, res, next) {
